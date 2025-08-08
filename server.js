@@ -14,6 +14,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
 // Import routes and DB connection after env is loaded
 import songRouter from './spotify-Backend/src/routes/songRoute.js';
 import connectDB from './spotify-Backend/src/config/mongodb.js';
+import connectedCloudinary from './spotify-Backend/src/config/cloudinary.js';
 
 // App config
 const app = express();
@@ -22,7 +23,7 @@ const port = process.env.PORT || 4000;
 // Middleware
 app.use(express.json());
 app.use(cors());
-
+connectedCloudinary();
 // Initialize routes
 app.use('/api/song', songRouter);
 
