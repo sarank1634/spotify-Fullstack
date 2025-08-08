@@ -6,10 +6,11 @@ const songSchema = new mongoose.Schema({
     album: { type: String, require: true },
     file: { type: String, require: true },
     duration: { type: String, require: true },
-})
+    image: { type: String, require: true},
+ })
 
 
-const songModel = mongoose.model || mongoose.model('song', songSchema);
+const songModel = mongoose.models.song || mongoose.model('song', songSchema);
 
 
 export default songModel;
