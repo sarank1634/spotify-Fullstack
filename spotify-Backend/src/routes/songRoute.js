@@ -1,4 +1,4 @@
-import { addSong, listSong } from "../controllers/songController";
+import { addSong, listSong } from "../controllers/songController.js";
 import express from "express";
 
 
