@@ -1,6 +1,6 @@
 
 
-const addSong = async () => {
+const addSong = async (req,res) => {
 
 }
 
