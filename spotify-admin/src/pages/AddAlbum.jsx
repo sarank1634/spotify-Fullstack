@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const AddAlbum = () => {
+
+const AddAlbum = () => {
   return (
     <div>AddAlbum</div>
   )
 }
+ export default AddAlbum;

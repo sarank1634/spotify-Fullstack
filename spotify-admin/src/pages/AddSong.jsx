@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default function AddSong() {
+const AddSong = () => {
   return (
-    <div>AddSong</div>
+    <div>
+      <h1>AddSong</h1>
+    </div>
   )
 }
+
+export default AddSong;

@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const ListSong = () => {
+ const ListSong = () => {
   return (
     <div>ListSong</div>
   )
 }
+
+export default ListSong;

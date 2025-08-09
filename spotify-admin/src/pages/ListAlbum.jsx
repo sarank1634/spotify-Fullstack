@@ -1,7 +1,10 @@
 import React from 'react'
 
-export const ListAlbum = () => {
+ const ListAlbum = () => {
   return (
     <div>ListAlbum</div>
   )
 }
+
+
+export default ListAlbum;
