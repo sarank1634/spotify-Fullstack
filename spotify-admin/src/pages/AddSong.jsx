@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { assets } from '../assets/assets';
 import axios from 'axios';
 import { url } from '../App';
@@ -30,15 +30,14 @@ const AddSong = () => {
 
      const response = await axios.post(`${url}/api/song/add`, formData);
 
-     if(response.data.success) {
-      toast.success("song Add Sucessfully");
-      setName("");
-      setAlbum("");
-      setDesc("");
-      setAlbum("none");
-      setImage(false);
-      setSong(false);
-     }
+     if (response.data.success) {
+        toast.success("Song added successfully");
+        setName("");
+        setDesc("");
+        setAlbum("none");
+        setImage(false);
+        setSong(false);
+      }
       else {
       toast.error("Some thing went wrong")
      }
@@ -48,8 +47,25 @@ const AddSong = () => {
     setLoading(false);
   } 
 
+  const loadAlbumData = async() => {
+    try{
+      const response = await axios.get(`${url}/api/album/list`);
+      if(response.data.success){
+        setAlbumData(response.data.albums)
+      } else{
+        toast.error("Error occured");
+      }
+    } catch(error){
+       toast.error("Error occured")
+    }
+  }
+
+  useEffect(() => {
+    loadAlbumData();
+  }, [])
+
   return loading ? (
-     <div className="gird place-items-center min-h-[80vh">
+     <div className="grid place-items-center min-h-[80vh]">
       <div className="w-16 h-16 place-self-center border-4 border-gray-400 border-t-green-800 rounded-full animate-spin">
       </div>
      </div> 
@@ -75,12 +91,12 @@ const AddSong = () => {
         <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2.5 ">
           <p>Song name</p>
-          <input onChange={(e) => setName(e.target.value)}  value={name} type="text" className='bg-transparent outling-green border-2 border-grey-600 w-[max(40vw,250px)]' placeholder='Type here '/>
+          <input onChange={(e) => setName(e.target.value)}  value={name} type="text" className='bg-transparent outline-green-500 border-2 border-gray-600 w-[max(40vw,250px)]' placeholder='Type here '/>
           </div> 
 
           <div className="flex flex-col gap-2.5 ">
           <p>Song description</p>
-          <input onChange={(e) => setDesc(e.target.value)} value={desc} type="text" className='bg-transparent outling-green border-2 border-grey-600 w-[max(40vw,250px)]' placeholder='Type here '/>
+          <input onChange={(e) => setDesc(e.target.value)} value={desc} type="text" className='bg-transparent outline-green-500 border-2 border-gray-600 w-[max(40vw,250px)]' placeholder='Type here '/>
           </div> 
         </div>
 
@@ -88,6 +104,7 @@ const AddSong = () => {
         <p>Album</p>
         <select onChange={(e) => setAlbum(e.target.value)} value={album} className='bg-transparent outline-green-600 border-2 border-gray-400 p-2 w-[150px]'>
           <option value="none">None</option>
+          {albumData.map((item, index) => (<option key={index} value={item._id}>{item.name}</option> ))}
         </select>
           </div> 
         <button type="submit" className='text-base text-black py-2.5 px-14 cursor-pointer'>Add</button>
