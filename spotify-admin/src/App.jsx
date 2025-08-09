@@ -5,16 +5,17 @@ import AddSong from './pages/AddSong';
 import AddAlbum from './pages/AddAlbum';
 import ListSong from './pages/ListSong';
 import ListAlbum from './pages/ListAlbum';
+import Sidebar from './components/sidebar';
 
 function App() {
   return (
     <div className="flex items-start min-h-screen">
       <ToastContainer />
+      <Sidebar />
       <div className="flex-1 h-screen overflow-y-scroll bg-[#FFF7]">
         <div className="pt-8 pl-5 sm:pl-12">
           <Routes>
             {/* Redirect unknown paths to / */}
-            <Route path="/" element={<AddSong />} />
             <Route path="/add-song" element={<AddSong />} />
             <Route path="/add-album" element={<AddAlbum />} />
             <Route path="/list-song" element={<ListSong />} />
