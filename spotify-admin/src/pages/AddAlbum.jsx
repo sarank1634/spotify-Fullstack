@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../assets/assets';
 
 
 const AddAlbum = () => {
+
+  const [image, setImage] = useState(false);
+  const [color, setColor] = useState("fffffff")
+  const [name, setName] =useState("")
+  const [desc, setDesc] = useState("");
+  const [loading, setLoading] = useState(false);
+
   return (
     <form className="flex flex-col items-start gap-8 text-gray-600">
       <div className="flex flex-col gap-4">
           <p>upload image</p>
-          <input type="file" id="image" accept='image/*' hidden />
+          <input onChange={(e) => setImage(e.target.files[0])} type="file" id="image" accept='image/*' hidden />
           <label htmlFor="image">
-            <img className='w-24 cursor-pointer' src={assets.upload_area} alt="" />
+            <img className='w-24 cursor-pointer' src={image ? URL.createObjectURL(image) :assets.upload_area} alt="" />
           </label>
       </div>
       <div className="flex flex-col gap-4">
