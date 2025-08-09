@@ -3,9 +3,7 @@ import albumModel from '../models/albumModel.js'
 
 const addAlbum = async(req,res) => {
 
-
     try {
-
         const name = req.body.name;
         const desc = req.body.desc;
         const bgColor = req.body.bgColor;
@@ -29,13 +27,13 @@ const addAlbum = async(req,res) => {
     }
 }
 
-
 const listAlbum = async(req,res) => {
     
     try {
-        
+        const allAlbums = await albumModel.find({});
+        res.json({success: true, albums: allAlbums});  
     } catch (error) {
-        
+        res.json({success: false ,message: error.message});
     }
 }
 
