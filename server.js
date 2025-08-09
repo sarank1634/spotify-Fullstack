@@ -15,6 +15,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
 import songRouter from './spotify-Backend/src/routes/songRoute.js';
 import connectDB from './spotify-Backend/src/config/mongodb.js';
 import connectedCloudinary from './spotify-Backend/src/config/cloudinary.js';
+import albumRouter from './spotify-Backend/src/routes/albumRoute.js';
 
 // App config
 const app = express();
@@ -48,6 +49,7 @@ app.use((req, res, next) => {
 connectedCloudinary();
 // Initialize routes
 app.use('/api/song', songRouter);
+app.use('/api/album', albumRouter)
 
 // Test route
 app.get('/', (req, res) => res.json({ status: 'API Working' }));
