@@ -4,8 +4,8 @@
   "main": "index.js",
   "type" : "module",
   "scripts": {
-  "start": "node server.js",
-  "server": "nodemon server.js"
+  "start": "node spotify-Backend/server.js",
+  "server": "nodemon spotify-Backend/server.js"
 },
   "author": "",
   "license": "ISC",

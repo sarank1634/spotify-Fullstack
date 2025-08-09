@@ -1,24 +1,59 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/assets';
+import axios from 'axios';
+import { url } from '../App';
+import { toast } from 'react-toastify';
 
 const AddSong = () => {
    
   const [image, setImage] = useState(false);
   const [song,setSong] = useState(false);
-  const [name,setName] = useState(false);
-  const [desc,setDesc] = useState(false);
-  const [album,setAlbum] = useState(false);
+  const [name,setName] = useState("");
+  const [desc,setDesc] = useState("");
+  const [album,setAlbum] = useState("none");
   const [loading,setLoading] = useState(false);
   const [albumData, setAlbumData] = useState([]);
 
   const onSubmitHandler = async(e) => {
-
     e.preventDefault();
+    setLoading(true);
 
+    try {
+      
+     const formData = new FormData();
+
+     formData.append('name',name);
+     formData.append('description',desc);
+     formData.append('image',image);
+     formData.append('audio',song);
+     formData.append('album',album);
+
+     const response = await axios.post(`${url}/api/song/add`, formData);
+
+     if(response.data.success) {
+      toast.success("song Add Sucessfully");
+      setName("");
+      setAlbum("");
+      setDesc("");
+      setAlbum("none");
+      setImage(false);
+      setSong(false);
+     }
+      else {
+      toast.error("Some thing went wrong")
+     }
+    } catch (error) {
+      toast.error("Error occured")
+    }
+    setLoading(false);
   } 
 
-
-  return (
+  return loading ? (
+     <div className="gird place-items-center min-h-[80vh">
+      <div className="w-16 h-16 place-self-center border-4 border-gray-400 border-t-green-800 rounded-full animate-spin">
+      </div>
+     </div> 
+  ) : (
    
      <form onSubmit={onSubmitHandler} className="flex flex-col items-start gap-8 text-gray-600">
       <div className="flex flex-col gap-8">
@@ -40,23 +75,23 @@ const AddSong = () => {
         <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2.5 ">
           <p>Song name</p>
-          <input type="text" className='bg-transparent outling-green border-2 border-grey-600 w-[max(40vw,250px)]' placeholder='Type here '/>
+          <input onChange={(e) => (e.target.value)}  value={name} type="text" className='bg-transparent outling-green border-2 border-grey-600 w-[max(40vw,250px)]' placeholder='Type here '/>
           </div> 
 
           <div className="flex flex-col gap-2.5 ">
           <p>Song description</p>
-          <input type="text" className='bg-transparent outling-green border-2 border-grey-600 w-[max(40vw,250px)]' placeholder='Type here '/>
+          <input onChange={(e) => (e.target.value)} value={desc} type="text" className='bg-transparent outling-green border-2 border-grey-600 w-[max(40vw,250px)]' placeholder='Type here '/>
           </div> 
         </div>
 
        <div className="flex flex-col gap-2.5">
         <p>Album</p>
-        <select className='bg-transparent outline-green-600 border-2 border-gray-400 p-2 w-[150px]'>
+        <select onChange={(e) => (e.target.value)} value={album} className='bg-transparent outline-green-600 border-2 border-gray-400 p-2 w-[150px]'>
           <option value="none">None</option>
         </select>
           </div> 
 
-        <button type="submit" className='text-base text-white py-2.5 px-14 cursor-pointer'>Add song</button>
+        <button type="submit" className='text-base text-white py-2.5 px-14 cursor-pointer'>Add</button>
 
       </div>
      </form>

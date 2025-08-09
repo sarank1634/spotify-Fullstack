@@ -27,4 +27,8 @@ const songModel = mongoose.models.song || mongoose.model('song', songSchema); ri
 
 4.13.02 after checkling logo bug
 
+<img src={image ? URL.createObjectURL(image) : assets.upload_area} className='w-24 cursor-pointer' alt="" />
+
+
+4.47.12 
 

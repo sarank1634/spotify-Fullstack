@@ -8,6 +8,8 @@ import ListAlbum from './pages/ListAlbum';
 import Sidebar from './components/sidebar';
 import Navbar from './components/navbar';
 
+
+export const url = "http://localhost:4000/"
 function App() {
   return (
     <div className="flex items-start min-h-screen">

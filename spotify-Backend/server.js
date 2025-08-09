@@ -12,10 +12,10 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 // Import routes and DB connection after env is loaded
-import songRouter from './spotify-Backend/src/routes/songRoute.js';
-import connectDB from './spotify-Backend/src/config/mongodb.js';
-import connectedCloudinary from './spotify-Backend/src/config/cloudinary.js';
-import albumRouter from './spotify-Backend/src/routes/albumRoute.js';
+import songRouter from './src/routes/songRoute.js';
+import connectDB from './src/config/mongodb.js';
+import connectedCloudinary from './src/config/cloudinary.js';
+import albumRouter from './src/routes/albumRoute.js';
 
 // App config
 const app = express();
