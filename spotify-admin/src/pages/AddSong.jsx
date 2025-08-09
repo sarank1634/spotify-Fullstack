@@ -75,24 +75,22 @@ const AddSong = () => {
         <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2.5 ">
           <p>Song name</p>
-          <input onChange={(e) => (e.target.value)}  value={name} type="text" className='bg-transparent outling-green border-2 border-grey-600 w-[max(40vw,250px)]' placeholder='Type here '/>
+          <input onChange={(e) => setName(e.target.value)}  value={name} type="text" className='bg-transparent outling-green border-2 border-grey-600 w-[max(40vw,250px)]' placeholder='Type here '/>
           </div> 
 
           <div className="flex flex-col gap-2.5 ">
           <p>Song description</p>
-          <input onChange={(e) => (e.target.value)} value={desc} type="text" className='bg-transparent outling-green border-2 border-grey-600 w-[max(40vw,250px)]' placeholder='Type here '/>
+          <input onChange={(e) => setDesc(e.target.value)} value={desc} type="text" className='bg-transparent outling-green border-2 border-grey-600 w-[max(40vw,250px)]' placeholder='Type here '/>
           </div> 
         </div>
 
        <div className="flex flex-col gap-2.5">
         <p>Album</p>
-        <select onChange={(e) => (e.target.value)} value={album} className='bg-transparent outline-green-600 border-2 border-gray-400 p-2 w-[150px]'>
+        <select onChange={(e) => setAlbum(e.target.value)} value={album} className='bg-transparent outline-green-600 border-2 border-gray-400 p-2 w-[150px]'>
           <option value="none">None</option>
         </select>
           </div> 
-
-        <button type="submit" className='text-base text-white py-2.5 px-14 cursor-pointer'>Add</button>
-
+        <button type="submit" className='text-base text-black py-2.5 px-14 cursor-pointer'>Add</button>
       </div>
      </form>
   )
