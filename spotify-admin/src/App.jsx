@@ -6,6 +6,7 @@ import AddAlbum from './pages/AddAlbum';
 import ListSong from './pages/ListSong';
 import ListAlbum from './pages/ListAlbum';
 import Sidebar from './components/sidebar';
+import Navbar from './components/navbar';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <ToastContainer />
       <Sidebar />
       <div className="flex-1 h-screen overflow-y-scroll bg-[#FFF7]">
+        <Navbar />
         <div className="pt-8 pl-5 sm:pl-12">
           <Routes>
             {/* Redirect unknown paths to / */}
