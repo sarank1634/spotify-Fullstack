@@ -19,7 +19,7 @@ const addAlbum = async(req,res) => {
             image: imageUpload.secure_url,
         }
 
-        const album = albumAData(albumAData); // store album inside the database
+        const album = albumModel(albumAData); // store album inside the database
         await album.save();
 
         res.json({success: true, message: "album added successfully"})
