@@ -23,6 +23,28 @@ const port = process.env.PORT || 4000;
 // Middleware
 app.use(express.json());
 app.use(cors());
+// Simple request logger to see API calls in the terminal
+app.use((req, res, next) => {
+    const start = Date.now();
+    res.on('finish', () => {
+        const duration = Date.now() - start;
+        const parts = [
+            `[${new Date().toISOString()}]`,
+            req.method,
+            req.originalUrl,
+            `-> ${res.statusCode}`,
+            `(${duration}ms)`
+        ];
+        console.log(parts.join(' '));
+        if (Object.keys(req.query || {}).length) {
+            console.log('  query:', req.query);
+        }
+        if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method)) {
+            console.log('  body :', req.body);
+        }
+    });
+    next();
+});
 connectedCloudinary();
 // Initialize routes
 app.use('/api/song', songRouter);
