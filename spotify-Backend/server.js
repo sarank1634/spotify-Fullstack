@@ -3,15 +3,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
-// Configure __dirname for ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Load environment variables from .env file in the root directory
-dotenv.config({ path: path.resolve(__dirname, '.env') });
-
-// Import routes and DB connection after env is loaded
 import songRouter from './src/routes/songRoute.js';
 import connectDB from './src/config/mongodb.js';
 import connectedCloudinary from './src/config/cloudinary.js';
@@ -19,12 +10,17 @@ import albumRouter from './src/routes/albumRoute.js';
 
 // App config
 const app = express();
+
+// ES module fix for __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, './.env') });
+
 const port = process.env.PORT || 4000;
 
 // Middleware
 app.use(express.json());
 app.use(cors());
-// Simple request logger to see API calls in the terminal
 app.use((req, res, next) => {
     const start = Date.now();
     res.on('finish', () => {
@@ -47,9 +43,10 @@ app.use((req, res, next) => {
     next();
 });
 connectedCloudinary();
-// Initialize routes
+connectDB();
+// API Endpoints
 app.use('/api/song', songRouter);
-app.use('/api/album', albumRouter)
+app.use('/api/album', albumRouter);
 
 // Test route
 app.get('/', (req, res) => res.json({ status: 'API Working' }));
