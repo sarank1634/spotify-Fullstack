@@ -32,7 +32,6 @@ import { toast } from 'react-toastify';
         toast.success(response.data.message);
         await fetchSongs();
       }
-
     } catch (error) {
       toast.error("Error removing song");
     }
