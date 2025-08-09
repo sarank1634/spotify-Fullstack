@@ -3,7 +3,7 @@ import React from 'react'
 
 const AddAlbum = () => {
   return (
-    <div>AddAlbum</div>
+    <div></div>
   )
 }
  export default AddAlbum;
