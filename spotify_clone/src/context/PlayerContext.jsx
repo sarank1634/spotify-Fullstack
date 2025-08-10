@@ -37,27 +37,38 @@ const PlayerContextProvider = (props) => {
     }
     //random click song to play
     const PlayWithId = async (id) => {
-        if (songsData && songsData[id]) {
-            setTrack(songsData[id]);
-            audioRef.current.play();
-            setPlayStatus(true);
-        }
+        await songsData.map((item) => {
+            if(id === item._id){
+                setTrack(item)
+            }
+        })
+
+        await audioRef.current.play();
+        setPlayStatus(true);
     }
 
     const Previous = async () => {
-        if (track && track.id > 0 && songsData) {
-            setTrack(songsData[track.id - 1]);
-            audioRef.current.play();
-            setPlayStatus(true);
-        }
+        
+        songsData.map(async(item,index) => {
+            if(track._id === item._id && index > 0) {
+                await setTrack(songsData[index-1]);
+                await audioRef.current.play();
+                setPlayStatus(true);
+            }
+
+        })
     }
 
     const Next = async () => {
-        if (track && songsData && track.id < songsData.length - 1) {
-            setTrack(songsData[track.id + 1]);
-            audioRef.current.play();
-            setPlayStatus(true);
-        }
+
+        songsData.map(async(item,index) => {
+            if(track._id === item._id && index < songsData.length) {
+                await setTrack(songsData[index+1]);
+                await audioRef.current.play();
+                setPlayStatus(true);
+            }
+        })
+        
     }
  //seek song to play
     const seekSong = async(e) => {

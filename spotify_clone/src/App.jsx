@@ -22,7 +22,7 @@ function App() {
         : null
     } 
     {/*tracking files  */}
-      <audio ref={audioRef} src={track ? track.file : ''} preload='auto'></audio>
+      <audio ref={audioRef} src={track ? track.file : null} preload='auto'></audio>
     </div>
   )
 }

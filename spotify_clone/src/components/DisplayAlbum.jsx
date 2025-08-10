@@ -1,17 +1,24 @@
 import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
-import { albumsData, assets, songsData } from "../assets/assets";
-import { useContext } from "react";
+import { assets } from "../assets/assets";
+import { useContext, useEffect } from "react";
 import { PlayerContext } from "../context/PlayerContext";
 
 
-const DispalyAlbum = () =>{
+const DispalyAlbum = ({album}) =>{
 
     const  {id} = useParams();
-    const albumData = albumsData[id];
-    const {PlayWithId} = useContext(PlayerContext);
-
-    return(
+    const [albumData, setAlbumData] = useState("");
+    const {PlayWithId, albumsData} = useContext(PlayerContext);
+   
+    useEffect(() => {
+        albumsData.map((item) => {
+            if(item.album === id){
+                setAlbumData(item)
+            }
+        })
+    }, [])
+    return albumData ? (
         <>
             <Navbar />
             <div className="mt-10 inline-flex gap-8 flex-col md:flex-row md:items-start">
@@ -32,15 +39,15 @@ const DispalyAlbum = () =>{
                 </div>
                 <div className="grid gap-9 grid-cols-4 sm:grid-cols-4 mt-10 mb-4 mt-4 ml-10 pl-2  text-[#a7a7a7]">
                     <p><b className=" mt-50 ml-55">#</b>Title</p>
-                    <p className="mr-95 ml-30">Album</p>
+                    <p id="album" className="mr-95 ml-30">Album</p>
                     <p className="sm:block mr-50">Date Added</p>
                     <img src= {assets.clock_icon} alt="" className="m-auto w-4" />
                 </div>
             </div>
             <hr />
             {
-                songsData.map((item, index) => ( // lick to play song inside Display album
-                    <div onClick={() => PlayWithId(item.id)} key={index} className="grid grid-cols-3 sm:gird-cols-4 gap-6 p-2 items-center text-[#a7a7a7 hover:bg-[#ffffff2b cursor-pointer">
+                songsData.filter(( item ) => item.album === album.name).map((item, index) => ( // lick to play song inside Display album
+                    <div onClick={() => PlayWithId(item._id)} key={index} className="grid grid-cols-3 sm:gird-cols-4 gap-6 p-2 items-center text-[#a7a7a7 hover:bg-[#ffffff2b cursor-pointer">
                         <p className="text-white">
                             <b className="mr-4 mt-2 text-[#a7a7a7]">{index+1}</b>
                             <img className="inline w-10 mr-5" src={item.image} alt="" />
@@ -54,7 +61,7 @@ const DispalyAlbum = () =>{
             )
             }
         </>
-    )
+    ) : null;
 }
 
 export default DispalyAlbum;
