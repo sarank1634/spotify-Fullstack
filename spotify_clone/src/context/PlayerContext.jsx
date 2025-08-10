@@ -1,18 +1,16 @@
 import { createContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-
 export const PlayerContext = createContext();
 
 const PlayerContextProvider = (props) => {
     const audioRef = useRef();
     const seekBg = useRef();
     const seekBar = useRef();
+
     const [albumsData, setAlbumsData] = useState([]);
     const [songsData, setSongsData] = useState([]);
     const [track, setTrack] = useState(null);
-    const baseUrl = 'http://localhost:4000';
-
-
+    const url = 'http://localhost:4000';
 
     // track will be set after songs are fetched
     // const [track, setTrack] = useState(songsData[1]); // removed
@@ -68,7 +66,7 @@ const PlayerContextProvider = (props) => {
 
     const getSongsData = async () => {
         try {
-            const response = await axios.get(`${baseUrl}/api/songs/list`);
+            const response = await axios.get(`${url}/api/songs/list`);
             // Assuming the API returns { songs: [...] }
             setSongsData(response.data.songs || []);
             // Set initial track to first song if available
@@ -82,7 +80,7 @@ const PlayerContextProvider = (props) => {
 
     const getAlbumsData = async () => {
         try {
-            const response = await axios.get(`${baseUrl}/api/albums/list`);
+            const response = await axios.get(`${url}/api/albums/list`);
             setAlbumsData(response.data.albums || []);
         } catch (error) {
             console.error('Failed to fetch albums:', error);

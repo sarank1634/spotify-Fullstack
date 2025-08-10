@@ -43,7 +43,6 @@ const Player = () => {
                 <img className="w-4" src={assets.volume_icon} alt="" />
                 <img className="w-20 bg-slate-50 h-1 rounded" src={assets.clock_icon} alt="" />
               </div>
-
         </div>
     ) : null
 }

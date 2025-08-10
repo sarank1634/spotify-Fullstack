@@ -11,15 +11,17 @@ function App() {
 
   return (
     <div className="h-screen bg-black">{
-      songsData && songsData.length !== 0 ? 
-      <>
-      <div className='h-[90%] flex'>
-        <Sidebar />
-        <Display />
-      </div>
-      <Player/>
-      </>
-        : null }
+      songsData && songsData.length !== 0
+        ? <>
+          <div className='h-[90%] flex'>
+            <Sidebar />
+            <Display />
+          </div>
+          <Player />
+        </>
+        : null
+    } 
+    {/*tracking files  */}
       <audio ref={audioRef} src={track ? track.file : ''} preload='auto'></audio>
     </div>
   )
