@@ -3,6 +3,7 @@ import Displayhome from "./Display home"
 import DisplayAlbum from './DisplayAlbum'
 import { useEffect, useRef } from "react"
 import { albumsData } from "../assets/assets"
+import { useContext } from "react"
 import { PlayerContext } from "../context/PlayerContext"
 
 const Display = () => {
@@ -24,7 +25,7 @@ const Display = () => {
    })
    return(
         <div ref={displayRef} className="w-[100%] m-2 px-6 pt-4 rounded bg-[#121212] text-white overflow-auto lg:w-[75%] lg:ml-0">
-         {albumData.length > 0 ?
+         {albumData?.length > 0 ?
             <Routes>
                 <Route path="/" element={<Displayhome />} />
                 <Route path="/album/:id" element={<DisplayAlbum album={albumData.find((x) => (x._id == albumId))} />} />
