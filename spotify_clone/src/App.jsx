@@ -13,7 +13,7 @@ function App() {
     <div className="h-screen bg-black">{
       songsData && songsData.length !== 0
         ? <>
-          <div className='h-[90%] flex'>
+          <div className='h-[85%] flex'>
             <Sidebar />
             <Display />
           </div>
