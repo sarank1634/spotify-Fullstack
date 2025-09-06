@@ -9,7 +9,7 @@ const DispalyAlbum = ({album}) =>{
 
     const  {id} = useParams();
     const [albumData, setAlbumData] = useState("");
-    const {PlayWithId, albumsData} = useContext(PlayerContext);
+    const {PlayWithId, albumsData,songsData} = useContext(PlayerContext);
    
     useEffect(() => {
         albumsData.map((item) => {

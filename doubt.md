@@ -1,4 +1,4 @@
-cloudinary
+<!-- cloudinary
 cors
 
 
@@ -30,5 +30,17 @@ const songModel = mongoose.models.song || mongoose.model('song', songSchema); ri
 <img src={image ? URL.createObjectURL(image) : assets.upload_area} className='w-24 cursor-pointer' alt="" />
 
 
-4.47.12 
+4.47.12  -->
 
+
+#admin pannel
+
+alignment and responsive 
+ablum discrption like encrypted
+
+
+frontent 
+albums and song list display create play 
+create playlist 
+search bar
+library
