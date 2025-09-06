@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
   const fetchSongs = async() => {
 
     try {
-      const response = await axios.get(`${url}/api/song/list`);
+      const response = await axios.get(`${url}/api/songs/list`);
       //  console.log(res.data);
 
        if(response.data.success) {
@@ -26,7 +26,7 @@ import { toast } from 'react-toastify';
   const removeSong = async(id) =>{
     try {
       
-      const response = await axios.post(`${url}/api/song/remove`, {id});
+      const response = await axios.post(`${url}/api/songs/remove`, {id});
 
       if (response.data.success) {
         toast.success(response.data.message);

@@ -15,7 +15,7 @@ export {addSong, listSong}
 songRouter.post('/add', upload.fields([{name:'image',maxCount:1},{name:'audio',maxCount:1 }]), addSong);
 
 
-3.14.59  api was worked http://localhost:4000/api/song/add has successfully worked
+3.14.59  api was worked http://localhost:4000/api/songs/add has successfully worked
 
 
 error "Schema hasn't been registered for model \"[object Object]\".\nUse mongoose.model(name, schema)"
