@@ -18,7 +18,7 @@ If you are developing a production application, we recommend using TypeScript wi
 1.08.38 finish
 
 11.51am 
-            <div onClick={() => navigate(`/album/${id}`)} className="min--[180px] p-2 rounded cursor-pointer hover: bg-[#ffffff26]">
+            <div onClick={() => navigate(`/albums/${id}`)} className="min--[180px] p-2 rounded cursor-pointer hover: bg-[#ffffff26]">
 
 1.18.52
 

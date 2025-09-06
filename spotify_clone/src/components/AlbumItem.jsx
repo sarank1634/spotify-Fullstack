@@ -5,7 +5,7 @@ const AlbumItem = ({image,name,desc,id}) => {
     const navigate = useNavigate();
     return(
         <div>
-            <div onClick={() => navigate(`/album/${id}`)} className="min--[180px] p-2 rounded cursor-pointer hover: bg-[#ffffff26]">
+            <div onClick={() => navigate(`/albums/${id}`)} className="min--[180px] p-2 rounded cursor-pointer hover: bg-[#ffffff26]">
                 <img className="rounded" src={image} alt="" />
                 <p className="font-blod mt-2 mb-1">{name}</p>
                 <p className="text-slate-200 text-sm">desc</p>

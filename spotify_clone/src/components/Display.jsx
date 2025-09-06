@@ -28,7 +28,7 @@ const Display = () => {
          {albumData?.length > 0 ?
             <Routes>
                 <Route path="/" element={<Displayhome />} />
-                <Route path="/album/:id" element={<DisplayAlbum album={albumData.find((x) => (x._id == albumId))} />} />
+                <Route path="/albums/:id" element={<DisplayAlbum album={albumData.find((x) => (x._id == albumId))} />} />
             </Routes>
             : null
             }

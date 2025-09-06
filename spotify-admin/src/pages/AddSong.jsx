@@ -49,7 +49,7 @@ const AddSong = () => {
 
   const loadAlbumData = async() => {
     try{
-      const response = await axios.get(`${url}/api/album/list`);
+      const response = await axios.get(`${url}/api/albums/list`);
       if(response.data.success){
         setAlbumData(response.data.albums)
       } else{
@@ -107,7 +107,7 @@ const AddSong = () => {
           {albumData.map((item, index) => (<option key={index} value={item._id}>{item.name}</option> ))}
         </select>
           </div> 
-        <button type="submit" className='text-base text-black py-2.5 px-14 cursor-pointer'>Add</button>
+        <button type="submit" className='text-base text-black py-2.5 px-14 cursor-pointer bg-red'>Add</button>
       </div>
      </form>
   )

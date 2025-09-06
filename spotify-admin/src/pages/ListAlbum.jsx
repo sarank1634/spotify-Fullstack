@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 
     try {
 
-      const response = await axios.get(`${url}/api/album/list`);
+      const response = await axios.get(`${url}/api/albums/list`);
       // axios puts the parsed JSON in response.data
       if (response.data.success) {
         setData(response.data.albums);
@@ -28,7 +28,7 @@ import { toast } from 'react-toastify';
 
     try {
       
-      const response = await axios.post(`${url}/api/album/remove`, { id });
+      const response = await axios.post(`${url}/api/albums/remove`, { id });
       if(response.data.success){
         toast.success(response.data.message);
         await fetchAblbums();
